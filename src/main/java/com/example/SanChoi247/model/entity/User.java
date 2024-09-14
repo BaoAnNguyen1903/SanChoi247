@@ -3,6 +3,7 @@ package com.example.SanChoi247.model.entity;
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,45 +37,56 @@ public class User {
     private String avatar;
     private char role;
 
-    // public User orElseThrow(Object userNotFound) {
-    //     return null;
-    // }
+    public User(String name, Date dob, char gender, String phone, String email, String username, String password,
+            char role) {
+        this.name = name;
+        this.dob = dob;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
-    // public boolean isVerified() {
-    //     return role != UserRole.UNVERIFIED_USER.getValue() && role != UserRole.UNVERIFIED_ORGANIZER.getValue();
-    // }
+    public User orElseThrow(Object userNotFound) {
+        return null;
+    }
 
-    // public UserRole getUserRole() {
-    //     return UserRole.fromValue(role);
-    // }
+    public boolean isVerified() {
+        return role != UserRole.UNVERIFIED_USER.getValue() && role != UserRole.UNVERIFIED_CHUSAN.getValue();
+    }
 
-    // @Getter
-    // public enum UserRole {
+    public UserRole getUserRole() {
+        return UserRole.fromValue(role);
+    }
 
-    //     ADMIN('A'),
+    @Getter
+    public enum UserRole {
 
-    //     ORGANIZER('o'),
-    //     UNVERIFIED_ORGANIZER('O'),
-    //     BANNED_ORGANIZER('p'),
+        ADMIN('A'),
 
-    //     USER('u'),
-    //     UNVERIFIED_USER('U'),
-    //     BANNED_USER('b');
+        ChuSan('C'),
+        UNVERIFIED_CHUSAN('c'),
+        BANNED_CHUSAN('p'),
 
+        USER('U'),
+        UNVERIFIED_USER('u'),
+        BANNED_USER('b');
 
-    //     private final char value;
+        private final char value;
 
-    //     UserRole(char value) {
-    //         this.value = value;
-    //     }
+        UserRole(char value) {
+            this.value = value;
+        }
 
-    //     public static UserRole fromValue(char value) {
-    //         for (UserRole role : UserRole.values()) {
-    //             if (role.getValue() == value) {
-    //                 return role;
-    //             }
-    //         }
-    //         return null;
-    //     }
-    // }
+        public static UserRole fromValue(char value) {
+            for (UserRole role : UserRole.values()) {
+                if (role.getValue() == value) {
+                    return role;
+                }
+            }
+            return null;
+        }
+    }
 }

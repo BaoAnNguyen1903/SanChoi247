@@ -25,6 +25,7 @@ public class RefundOrder {
     // approved_on timestamp,
     // refunded_on timestamp,
     // actual_refund int
+    
     private Booking booking ; // The associated booking for which the refund is requested.
     private int total; // The total amount to be refunded (does not include the 30% cut).
     private LocalDateTime createdOn; // The date and time when the refund order was created.

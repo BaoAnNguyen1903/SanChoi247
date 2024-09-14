@@ -14,6 +14,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class UnverifiedUser {
-    private int userId;
+    private int uid;
     private LocalDateTime createdAt;
 }
